@@ -481,7 +481,7 @@ led_value(idx_fix, 1, 64)
 -- grid:event element=255 event=init
 -- action: Global (g)
 --[[@g]]
-ISO_X, ISO_Y = 1, 5
+ISO_X, ISO_Y = 2, 5
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
