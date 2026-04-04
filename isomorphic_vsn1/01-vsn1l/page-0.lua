@@ -514,14 +514,21 @@ end
 -- action: Code Block (cb)
 --[[@cb]]
 iso_ss = 0
-iso_gx = -1
-iso_gy = -1
+iso_gx = 0
+iso_gy = 0
+iso_min_gx = 0
+iso_min_gy = 0
+function min(a, b)
+  return a < b and a or b
+end
 function iso_go(x, y)
   if x ~= ISO_X or y ~= ISO_Y then
     return
   end
-  iso_gx = -1
-  iso_gy = -1
+  iso_gx = 0
+  iso_gy = 0
+  iso_min_gx = 0
+  iso_min_gy = 0
   for i = 0, 7 do
     element[i]:ini()
   end
@@ -529,11 +536,9 @@ function iso_go(x, y)
   timer_stop(self:element_index())
   timer_start(self:element_index(), 30)
 end
-function iso_gi(x, y)
-  iso_gx = iso_gx + x
-  iso_gy = iso_gy + y
-  local c = string.format("if iso_gi then iso_gi(%d,%d)end", x, y)
-  immediate_send(x, y, c)
+function iso_gu(x, y)
+  iso_min_gx = min(x, iso_min_gx)
+  iso_min_gy = min(y, iso_min_gy)
 end
 function iso_si(x, y)
   ISO_X = x
@@ -549,11 +554,14 @@ timer_start(self:element_index(), 500)
 if iso_ss == 0 then
   immediate_send(nil, nil, "if iso_go then iso_go(" .. ISO_X .. "," .. ISO_Y .. ")end")
 elseif iso_ss == 1 then
-  iso_gi(1, 0)
-  iso_gi(0, 1)
+  iso_gx = module_position_x()
+  iso_gy = module_position_y()
+  immediate_send(nil, nil, "if iso_gu then iso_gu(" .. iso_gx .. "," .. iso_gy .. ")end")
   iso_ss = iso_ss + 1
   timer_start(self:element_index(), 30)
 elseif iso_ss == 2 then
+  iso_gx = iso_gx - iso_min_gx
+  iso_gy = iso_gy - iso_min_gy
   iso_ir()
   for i = 0, 7 do
     local real_idx = real_index[i]
