@@ -9,7 +9,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -39,18 +39,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=0 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -66,7 +66,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -96,18 +96,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=1 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -123,7 +123,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -153,18 +153,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=2 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -180,7 +180,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -210,18 +210,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=3 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -237,7 +237,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -267,18 +267,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=4 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -294,7 +294,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -324,18 +324,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=5 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -351,7 +351,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -381,18 +381,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=6 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -408,7 +408,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -438,18 +438,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=7 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -465,7 +465,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -495,18 +495,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=8 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -522,7 +522,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -552,18 +552,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=9 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -579,7 +579,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -609,18 +609,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=10 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -636,7 +636,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -666,18 +666,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=11 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -693,7 +693,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -723,18 +723,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=12 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -750,7 +750,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -780,18 +780,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=13 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -807,7 +807,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -837,18 +837,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=14 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -864,7 +864,7 @@ self:led_value(1, -1)
 -- ------------------------------------------------------------
 -- action: Start Animation (glat)
 --[[@glat]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 2, 3)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 2, 3)
 
 -- ============================================================
 
@@ -894,18 +894,18 @@ led_value(self:element_index(), 1, math.max(64, self:button_value()))
 -- grid:event element=15 event=timer
 -- action: Stop Animation (glap)
 --[[@glap]]
-led_animation_phase_rate_type(real_index[self:element_index()], 1, 0, 0, 0)
+led_animation_phase_rate_type(iso_ri[self:element_index()], 1, 0, 0, 0)
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
 local idx = self:element_index()
-local real_idx = real_index[idx]
-local local_x = real_idx % 4
-local local_y = 3 - math.floor(real_idx / 4)
+local ri = iso_ri[idx]
+local local_x = ri % 4
+local local_y = 3 - math.floor(ri / 4)
 local x = (iso_gx * 4) + local_x
 local y = (iso_gy * 4) + local_y
-self.note_number = math.max(0, math.min(127, x * ISO_X + y * ISO_Y))
+self.note_number = math.max(0, math.min(127, ISO_A + x * ISO_X + y * ISO_Y))
 local r, g, b = table.unpack(({ { 255, 0, 0 }, { 255, 128, 0 }, { 255, 255, 0 }, { 128, 255, 0 }, { 0, 255, 0 }, { 0, 255, 128 }, { 0, 255, 255 }, { 0, 128, 255 }, { 255, 0, 255 }, { 128, 0, 255 }, { 200, 200, 200 }, { 255, 0, 128 } })[(self.note_number % 12) + 1])
 led_color(idx, 1, r, g, b)
 led_value(idx, 1, 64)
@@ -920,12 +920,12 @@ led_value(idx, 1, 64)
 -- ------------------------------------------------------------
 -- action: Global (g)
 --[[@g]]
-ISO_X, ISO_Y = 2, 5
+ISO_X, ISO_Y, ISO_A = 2, 5, 42
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
 --[[@cb]]
-real_index = {}
+iso_ri = {}
 function iso_ir()
   local r = module_rotation()
   for i = 0, 15 do
@@ -944,7 +944,7 @@ function iso_ir()
       rx = y
       ry = 3 - x
     end
-    real_index[i] = ry * 4 + rx
+    iso_ri[i] = ry * 4 + rx
   end
 end
 
@@ -978,9 +978,11 @@ function iso_gu(x, y)
   iso_min_gx = min(x, iso_min_gx)
   iso_min_gy = min(y, iso_min_gy)
 end
-function iso_si(x, y)
+function iso_si(x, y, a)
   ISO_X = x
   ISO_Y = y
+  ISO_A = a
+  iso_go(x, y)
 end
 timer_start(self:element_index(), 500)
 
@@ -1002,9 +1004,9 @@ elseif iso_ss == 2 then
   iso_gy = iso_gy - iso_min_gy
   iso_ir()
   for i = 0, 15 do
-    local real_idx = real_index[i]
-    local x = real_idx % 4 + iso_gx * 4
-    local y = 3 - math.floor(real_idx / 4) + iso_gy * 4
+    local ri = iso_ri[i]
+    local x = ri % 4 + iso_gx * 4
+    local y = 3 - math.floor(ri / 4) + iso_gy * 4
     local delay = (1 + x + y * 4) * 30
     timer_start(i, delay)
   end
