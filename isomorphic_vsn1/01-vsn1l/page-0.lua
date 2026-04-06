@@ -621,10 +621,10 @@ ISO_X, ISO_Y, ISO_A = 2, 5, 42
 -- action: Code Block (cb)
 --[[@cb]]
 function iso_e2o(x)
-  return ((x - 64 >= 0) and 1 or -1) * (((math.abs(x - 64) * 12 + 31) // 63) + 1)
+  return (x < 64) and ((x * 12) // 64 - 12) or ((x - 64) * 12 // 64 + 1)
 end
 function iso_o2e(x)
-  return 64 + ((x >= 0) and 1 or -1) * (((math.abs(x) - 1) * 63 + 6) // 12)
+  return (x < 0) and ((x + 12) * 64 + 32) // 12 or (64 + ((x - 1) * 64 + 32) // 12)
 end
 iso_pg = 4
 
