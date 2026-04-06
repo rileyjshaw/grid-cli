@@ -479,13 +479,6 @@ self:led_value(-1, -1)
 
 -- ============================================================
 
--- grid:event element=8 event=timer
--- action: Code Block (cb)
---[[@cb]]
-print("tick")
-
--- ============================================================
-
 -- grid:event element=8 event=endless
 -- action: Endless Mode (sen)
 --[[@sen]]
@@ -579,13 +572,6 @@ iso_pg = self:element_index() - 8
 
 -- ============================================================
 
--- grid:event element=13 event=init
--- action: Code Block (cb)
---[[@cb]]
-lcd_set_backlight(200)
-
--- ============================================================
-
 -- grid:event element=13 event=draw
 -- action: Code Block (cb)
 --[[@cb]]
@@ -615,7 +601,10 @@ elseif iso_pg == 3 then
   label = midi_to_label(val)
 end
 self:draw_rectangle_filled(0, 0, self:screen_width(), self:screen_height(), { 0, 0, 0 })
-if iso_pg ~= 4 then
+if iso_pg == 4 then
+  lcd_set_backlight(0)
+else
+  lcd_set_backlight(200)
   self:draw_text_fast(label, 0, 12, 100, { 255, 22, 22 })
   self:draw_text_fast(val, 0, 120, 108, { 255, 22, 22 })
 end
@@ -637,8 +626,7 @@ end
 function iso_o2e(x)
   return 64 + ((x >= 0) and 1 or -1) * (((math.abs(x) - 1) * 63 + 6) // 12)
 end
-iso_pg = 1
-element[8]:endless_value(iso_o2e(ISO_X))
+iso_pg = 4
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
