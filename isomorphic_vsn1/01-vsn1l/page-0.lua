@@ -638,9 +638,9 @@ iso_pg = 4
 iso_ss = 0
 iso_gx = 0
 iso_gy = 0
-iso_min_gx = 0
-iso_min_gy = 0
-iso_booting = true
+iso_mx = 0
+iso_my = 0
+iso_bt = true
 
 -- ------------------------------------------------------------
 -- action: Code Block (cb)
@@ -653,8 +653,8 @@ function iso_go(x, y, a)
   end
   iso_gx = 0
   iso_gy = 0
-  iso_min_gx = 0
-  iso_min_gy = 0
+  iso_mx = 0
+  iso_my = 0
   for i = 0, 7 do
     element[i]:ini()
   end
@@ -663,12 +663,12 @@ function iso_go(x, y, a)
   timer_start(self:element_index(), 30)
 end
 function iso_gu(x, y)
-  iso_min_gx = min(x, iso_min_gx)
-  iso_min_gy = min(y, iso_min_gy)
+  iso_mx = min(x, iso_mx)
+  iso_my = min(y, iso_my)
 end
 local leader = module_position_x() == 0 and module_position_y() == 0
 function iso_nj()
-  if iso_booting then return end
+  if iso_bt then return end
   if leader then
     immediate_send(nil, nil, "if iso_go then iso_go(" .. ISO_X .. "," .. ISO_Y .. "," .. ISO_A .. ")end")
     iso_go(ISO_X, ISO_Y, ISO_A)
@@ -708,7 +708,7 @@ function iso_ir()
   end
 end
 if iso_ss == 0 then
-  iso_booting = false
+  iso_bt = false
   immediate_send(nil, nil, "if iso_go then iso_go(" .. ISO_X .. "," .. ISO_Y .. "," .. ISO_A .. ")end")
   iso_go(ISO_X, ISO_Y, ISO_A)
 elseif iso_ss == 1 then
@@ -718,8 +718,8 @@ elseif iso_ss == 1 then
   iso_ss = iso_ss + 1
   timer_start(self:element_index(), 30)
 elseif iso_ss == 2 then
-  iso_gx = iso_gx - iso_min_gx
-  iso_gy = iso_gy - iso_min_gy
+  iso_gx = iso_gx - iso_mx
+  iso_gy = iso_gy - iso_my
   iso_ir()
   for i = 0, 7 do
     local ri = iso_ri[i]
