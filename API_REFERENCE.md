@@ -5,15 +5,23 @@ Everything else in these configs is either a Grid builtin, a local variable, or 
 
 ## Callable Functions
 
-### `iso_go(x, y)`
+### `iso_go(x, y, a)`
 
 Shared by BU16 and VSN1.
 
-Resets grid discovery and starts a fresh setup pass. The call is ignored unless `x` and `y` match the module's current horizontal and vertical step settings, which prevents stale broadcasts from older settings from retriggering the layout.
+Applies the given layout parameters and resets grid discovery: clears normalized state, reinits all keys on this module, sets `iso_ss` to `1`, and starts the timer-driven position pass. Every module should use the same `x`, `y`, and `a` after broadcasts so the cluster stays in tune.
 
 Parameters:
-- `x`: current horizontal step
-- `y`: current vertical step
+
+- `x`: horizontal step
+- `y`: vertical step
+- `a`: root note (optional). If omitted or `nil`, `ISO_A` is left unchanged—useful when only `x`/`y` change (e.g. VSN1 encoder on step pages).
+
+### `iso_nj()`
+
+Shared by BU16 and VSN1.
+
+Hot-plug / “new join” hook. Non-leader modules call this (via `immediate_send`) right after init so the hardware leader at grid position `(0, 0)` can broadcast `iso_go` and pull the whole layout back through discovery. While `iso_booting` is true on the leader, `iso_nj` returns immediately so this is a no-op for modules present at boot.
 
 ### `iso_gu(x, y)`
 
@@ -22,6 +30,7 @@ Shared by BU16 and VSN1.
 Updates the tracked minimum raw module coordinates during discovery. Each module calls this after reading its physical position so the whole layout can be normalized to a common origin.
 
 Parameters:
+
 - `x`: raw module X position
 - `y`: raw module Y position
 
@@ -31,17 +40,6 @@ Shared by BU16 and VSN1.
 
 Rebuilds `iso_ri` from `module_rotation()`. This is what keeps the musical layout continuous even when a module is rotated.
 
-### `iso_si(x, y, a)`
-
-Shared by BU16 and VSN1.
-
-Sets the current horizontal step, vertical step, and root note, then calls `iso_go(x, y)` to rebuild the layout. The VSN1 uses this to push layout changes to the rest of the grid.
-
-Parameters:
-- `x`: new horizontal step
-- `y`: new vertical step
-- `a`: new root note
-
 ### `iso_e2o(x)`
 
 VSN1 only.
@@ -49,6 +47,7 @@ VSN1 only.
 Converts the VSN1 encoder's raw `0..127` value into the signed step values used by the layout UI. The output range is `-13..-1` and `1..13`; zero is skipped.
 
 Parameters:
+
 - `x`: raw encoder value
 
 ### `iso_o2e(x)`
@@ -58,6 +57,7 @@ VSN1 only.
 Converts a signed step value back into the encoder's `0..127` range so the VSN1 can restore and display the current setting.
 
 Parameters:
+
 - `x`: signed step value
 
 ## Global State
@@ -67,7 +67,8 @@ Parameters:
 Shared by BU16 and VSN1.
 
 Setup state for the timer-driven discovery pass:
-- `0`: waiting to broadcast a restart
+
+- `0`: only the hardware leader at `(0, 0)` reaches this after its boot delay; it broadcasts `iso_go` to sync the layout.
 - `1`: collecting module positions
 - `2`: normalizing coordinates and scheduling note updates
 - `3`: settled
@@ -107,11 +108,18 @@ Rotation-corrected button index map.
 
 Button timers read from `iso_ri` before calculating note positions, so this table is the link between physical rotation and musical continuity.
 
+### `iso_booting`
+
+Shared by BU16 and VSN1.
+
+Starts `true` on init. The leader clears it to `false` when handling `iso_ss == 0` (first broadcast after the 500ms delay). While `true`, `iso_nj` does nothing so non-leaders’ immediate pings do not trigger `iso_go` before the leader is ready.
+
 ### `iso_pg`
 
 VSN1 only.
 
 Current VSN1 encoder target:
+
 - `1`: horizontal step
 - `2`: vertical step
 - `3`: root note
@@ -119,6 +127,6 @@ Current VSN1 encoder target:
 
 ## Practical Notes
 
-- `iso_go`, `iso_gu`, `iso_ir`, and `iso_si` are the shared helpers to rely on when extending the grid.
+- `iso_go`, `iso_gu`, `iso_ir`, and `iso_nj` are the shared helpers to rely on when extending the grid.
 - `iso_e2o`, `iso_o2e`, and `iso_pg` are VSN1 UI helpers.
 - `iso_gx`, `iso_gy`, and `iso_ri` are the most useful read-only globals when calculating note positions in custom code.

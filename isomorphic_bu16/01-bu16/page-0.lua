@@ -959,9 +959,12 @@ iso_min_gy = 0
 function min(a, b)
   return a < b and a or b
 end
-function iso_go(x, y)
-  if x ~= ISO_X or y ~= ISO_Y then
-    return
+iso_booting = true
+function iso_go(x, y, a)
+  ISO_X = x
+  ISO_Y = y
+  if a ~= nil then
+    ISO_A = a
   end
   iso_gx = 0
   iso_gy = 0
@@ -978,13 +981,19 @@ function iso_gu(x, y)
   iso_min_gx = min(x, iso_min_gx)
   iso_min_gy = min(y, iso_min_gy)
 end
-function iso_si(x, y, a)
-  ISO_X = x
-  ISO_Y = y
-  ISO_A = a
-  iso_go(x, y)
+local leader = module_position_x() == 0 and module_position_y() == 0
+function iso_nj()
+  if iso_booting then return end
+  if leader then
+    immediate_send(nil, nil, "if iso_go then iso_go(" .. ISO_X .. "," .. ISO_Y .. "," .. ISO_A .. ")end")
+    iso_go(ISO_X, ISO_Y, ISO_A)
+  end
 end
-timer_start(self:element_index(), 500)
+if leader then
+  timer_start(self:element_index(), 500)
+else
+  immediate_send(nil, nil, "if iso_nj then iso_nj() end")
+end
 
 -- ============================================================
 
@@ -992,7 +1001,9 @@ timer_start(self:element_index(), 500)
 -- action: Code Block (cb)
 --[[@cb]]
 if iso_ss == 0 then
-  immediate_send(nil, nil, "if iso_go then iso_go(" .. ISO_X .. "," .. ISO_Y .. ")end")
+  iso_booting = false
+  immediate_send(nil, nil, "if iso_go then iso_go(" .. ISO_X .. "," .. ISO_Y .. "," .. ISO_A .. ")end")
+  iso_go(ISO_X, ISO_Y, ISO_A)
 elseif iso_ss == 1 then
   iso_gx = module_position_x()
   iso_gy = module_position_y()
