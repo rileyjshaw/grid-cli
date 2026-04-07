@@ -486,7 +486,7 @@ self:endless_mode(0)
 self:endless_velocity(50)
 self:endless_min(0)
 self:endless_max(127)
-self:endless_sensitivity(50)
+self:endless_sensitivity(100)
 
 -- ------------------------------------------------------------
 -- action: Simple Color (sglc)
