@@ -21,7 +21,7 @@ Parameters:
 
 Shared by BU16 and VSN1.
 
-Hot-plug / “new join” hook. Non-leader modules call this (via `immediate_send`) right after init so the hardware leader at grid position `(0, 0)` can broadcast `iso_go` and pull the whole layout back through discovery. While `iso_bt` is true on the leader, `iso_nj` returns immediately so this is a no-op for modules present at boot.
+Hot-plug / “new join” hook. Non-leader modules broadcast this (via `immediate_send`) from the timer when `iso_ss == 0` so the hardware leader at grid position `(0, 0)` can broadcast `iso_go` and pull the whole layout back through discovery. While `iso_bt` is true on the leader, `iso_nj` returns immediately so this is a no-op for modules present at boot.
 
 ### `iso_gu(x, y)`
 
@@ -68,10 +68,11 @@ Shared by BU16 and VSN1.
 
 Setup state for the timer-driven discovery pass:
 
-- `0`: only the hardware leader at `(0, 0)` reaches this after its boot delay; it broadcasts `iso_go` to sync the layout.
-- `1`: collecting module positions
-- `2`: normalizing coordinates and scheduling note updates
-- `3`: settled
+- `0`: first tick at 100ms. Everyone resolves `iso_ld`. Non-leaders broadcast `iso_nj` (ignored while `iso_bt` is true). Leader starts a 400ms timer. All modules advance to `1`.
+- `1`: only the leader reaches this (at ~500ms). Clears `iso_bt`, broadcasts `iso_go` with full tuning. `iso_go` sets `iso_ss` to `2` on every module.
+- `2`: collecting module positions
+- `3`: normalizing coordinates and scheduling note updates
+- `4`: settled
 
 ### `iso_gx`
 
@@ -107,6 +108,12 @@ Rotation-corrected button index map.
 - On VSN1, it contains 8 entries.
 
 Button timers read from `iso_ri` before calculating note positions, so this table is the link between physical rotation and musical continuity.
+
+### `iso_ld`
+
+Shared by BU16 and VSN1.
+
+`true` on the hardware leader module at grid position `(0, 0)`, `false` on all others. Set once during init.
 
 ### `iso_bt`
 
